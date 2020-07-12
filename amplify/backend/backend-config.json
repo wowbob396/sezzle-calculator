@@ -1,0 +1,26 @@
+{
+	"auth": {
+		"sezzlecalculator6d755f89": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
+	},
+	"api": {
+		"sezzlecalc": {
+			"service": "AppSync",
+			"providerPlugin": "awscloudformation",
+			"output": {
+				"authConfig": {
+					"additionalAuthenticationProviders": [],
+					"defaultAuthentication": {
+						"authenticationType": "AMAZON_COGNITO_USER_POOLS",
+						"userPoolConfig": {
+							"userPoolId": "authsezzlecalculator6d755f89"
+						}
+					}
+				}
+			}
+		}
+	}
+}
