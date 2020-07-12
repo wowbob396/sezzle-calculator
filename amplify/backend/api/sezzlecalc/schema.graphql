@@ -5,3 +5,18 @@ type SezzleType @model {
 	price: Int
 	rating: Float
 }
+
+type User @model {
+	id: ID!
+	id: ID!
+	username: String!
+	data_timezone: String!
+	data_timestamp: Int!}
+
+type UserCalculation @model {
+	id: ID!
+	username: String!
+	data_timezone: String!
+	data_timestamp: Int!
+	calculation: String!
+}
