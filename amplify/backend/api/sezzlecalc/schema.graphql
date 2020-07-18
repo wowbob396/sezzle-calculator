@@ -8,15 +8,18 @@ type SezzleType @model {
 
 type User @model {
 	id: ID!
-	id: ID!
 	username: String!
 	data_timezone: String!
 	data_timestamp: Int!}
 
 type UserCalculation @model {
 	id: ID!
-	username: String!
-	data_timezone: String!
-	data_timestamp: Int!
+	user: User!
 	calculation: String!
 }
+
+type UserCalculationConnection {
+	items: [UserCalculation],
+	nextToken: String
+}
+

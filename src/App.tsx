@@ -1,29 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState, ChangeEvent } from 'react';
 import './App.css';
 import Amplify from 'aws-amplify';
 import awsExports from './aws-exports';
 import { withAuthenticator } from 'aws-amplify-react';
+import { 
 
+  makeStyles, 
+  createStyles, 
+  Theme, 
+  TextField,
+  Button
+} from "@material-ui/core";
 Amplify.configure(awsExports); 
 
+const useStyles = makeStyles((theme: Theme) => createStyles({
+  formStyle: {
+    margin: theme.spacing(3),
+    display: "inline-block",
+  }
+}));
+
+
+
 function App() {
+  const styles = useStyles();
+  const [calculation, setCalculation] = useState('');
+
+  function onCalculationChange(event: ChangeEvent<HTMLInputElement>) {
+
+  }
+
+  async function calculate() {
+
+  }
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={styles.formStyle}>
+      <h1>Calculator</h1>
+      <TextField onChange={onCalculationChange}>
+
+      </TextField>
     </div>
   );
 }
