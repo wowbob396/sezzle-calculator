@@ -6,20 +6,20 @@ type SezzleType @model {
 	rating: Float
 }
 
-type User @model {
-	id: ID!
-	username: String!
-	data_timezone: String!
-	data_timestamp: Int!}
+# type User @model {
+# 	id: ID!
+# 	username: String!
+# 	data_timezone: String!
+# 	data_timestamp: Int!}
 
-type UserCalculation @model {
-	id: ID!
-	user: User!
-	calculation: String!
-}
+# type UserCalculation @model {
+# 	id: ID!
+# 	user: User!
+# 	calculation: String!
+# }
 
-type UserCalculationConnection {
-	items: [UserCalculation],
-	nextToken: String
-}
+# type UserCalculationConnection {
+# 	items: [UserCalculation],
+# 	nextToken: String
+# }
 
