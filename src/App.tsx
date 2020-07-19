@@ -27,19 +27,40 @@ function App() {
   const [calculation, setCalculation] = useState('');
 
   function onCalculationChange(event: ChangeEvent<HTMLInputElement>) {
-
+    const newCalculation = event.target.value;
+    console.log(newCalculation);
+    setCalculation(newCalculation);
   }
 
-  async function calculate() {
-
+  function calculate() {
+    console.log(calculation);
+    try {
+      const result = eval(calculation);
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+      if (error instanceof SyntaxError) {
+        alert('Sorry, the equation you entered has a syntax error.');
+      }
+    }
+    setCalculation('');
   }
   
   return (
     <div className={styles.formStyle}>
       <h1>Calculator</h1>
-      <TextField onChange={onCalculationChange}>
+      <div className={styles.formStyle}>
+
+      <TextField label="Enter Calculation Here!" onChange={onCalculationChange} value={calculation}>
 
       </TextField>
+
+      <Button onClick={calculate}>Submit Calculation</Button>
+      </div>
+      <h2> Calculation Feed</h2>
+      <div>
+        
+      </div>
     </div>
   );
 }
