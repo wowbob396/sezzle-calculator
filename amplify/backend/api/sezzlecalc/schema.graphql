@@ -1,25 +1,15 @@
-type SezzleType @model {
+type UserCalculation @model(subscriptions: null) {
 	id: ID!
-	title: String!
-	content: String!
-	price: Int
-	rating: Float
+	username: String!
+	timestamp: String!
+	calculation: String!
 }
 
-# type User @model {
-# 	id: ID!
-# 	username: String!
-# 	data_timezone: String!
-# 	data_timestamp: Int!}
+type UserCalculationConnection {
+	items: [UserCalculation],
+	nextToken: String
+}
 
-# type UserCalculation @model {
-# 	id: ID!
-# 	user: User!
-# 	calculation: String!
-# }
-
-# type UserCalculationConnection {
-# 	items: [UserCalculation],
-# 	nextToken: String
-# }
-
+type Subscription {
+	userCalculationCreated(username: String!): UserCalculation @aws_subscribe(mutations: ["createUserCalculation"])
+}

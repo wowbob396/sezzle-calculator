@@ -16,5 +16,23 @@
                 "sezzlecalculator6d755f89": {}
             }
         }
+    },
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-sezzlecalculator-dev-181551-authRole",
+            "UnauthRoleArn": "arn:aws:iam::842234083685:role/amplify-sezzlecalculator-dev-181551-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::842234083685:role/amplify-sezzlecalculator-dev-181551-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "amplify-sezzlecalculator-dev-181551-deployment",
+            "UnauthRoleName": "amplify-sezzlecalculator-dev-181551-unauthRole",
+            "StackName": "amplify-sezzlecalculator-dev-181551",
+            "StackId": "arn:aws:cloudformation:us-east-1:842234083685:stack/amplify-sezzlecalculator-dev-181551/ca47ab80-ca15-11ea-9069-0e880f83ff7f",
+            "AmplifyAppId": "duil6ifzre2fb"
+        },
+        "categories": {
+            "auth": {
+                "sezzlecalculator6d755f89": {}
+            }
+        }
     }
 }
