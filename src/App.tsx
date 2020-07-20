@@ -46,7 +46,7 @@ function App() {
     const userData = await Auth.currentAuthenticatedUser();
 
     const username = userData.username;
-    const updatedSubscriptions = API.graphql(graphqlOperation(subscriptions.userCalculationCreated, {username})) as any;
+    const updatedSubscriptions = API.graphql(graphqlOperation(subscriptions.userCalculationCreated)) as any;
     setUsername(username);
     const updatedSubs: Array<{id: string; username: string; timestamp: string; calculation: string; updatedAt: string}> = [];
 

@@ -3,8 +3,8 @@
 // this is an auto generated file. This will be overwritten
 
 export const userCalculationCreated = /* GraphQL */ `
-  subscription UserCalculationCreated($username: String!) {
-    userCalculationCreated(username: $username) {
+  subscription UserCalculationCreated {
+    userCalculationCreated {
       id
       username
       timestamp

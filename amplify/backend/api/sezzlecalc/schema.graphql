@@ -11,5 +11,5 @@ type UserCalculationConnection {
 }
 
 type Subscription {
-	userCalculationCreated(username: String!): UserCalculation @aws_subscribe(mutations: ["createUserCalculation"])
+	userCalculationCreated: UserCalculation @aws_subscribe(mutations: ["createUserCalculation"])
 }

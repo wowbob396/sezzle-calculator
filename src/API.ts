@@ -142,10 +142,6 @@ export type ListUserCalculationsQuery = {
   } | null,
 };
 
-export type UserCalculationCreatedSubscriptionVariables = {
-  username: string,
-};
-
 export type UserCalculationCreatedSubscription = {
   userCalculationCreated:  {
     __typename: "UserCalculation",
