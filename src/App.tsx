@@ -1,6 +1,6 @@
 import React, { useState, ChangeEvent, useEffect, useCallback } from 'react';
 import './App.css';
-import Amplify, { API, graphqlOperation, Auth } from 'aws-amplify';
+import Amplify, { API, graphqlOperation } from 'aws-amplify';
 import awsExports from './aws-exports';
 import { withAuthenticator } from 'aws-amplify-react';
 import * as subscriptions from './graphql/subscriptions';
@@ -42,11 +42,8 @@ function App() {
     setAllCalculations(finalList.slice(0,10));
   }
   const getSubscriptions = useCallback(async () => {
-    const userData = await Auth.currentAuthenticatedUser();
 
-    const username = userData.username;
     const updatedSubscriptions = API.graphql(graphqlOperation(subscriptions.userCalculationCreated)) as any;
-    setUsername(username);
     const updatedSubs: Array<{id: string; username: string; timestamp: string; calculation: string; updatedAt: string}> = [];
 
     
@@ -66,10 +63,19 @@ function App() {
     setCalculation(newCalculation);
   }
 
+  function onUsernameChange(event: ChangeEvent<HTMLInputElement>) {
+    const newUsername = event.target.value;
+    setUsername(newUsername);
+  }
+
   async function calculate() {
     try {
       let result = eval(calculation);
       result = calculation + ` = ${result}`;
+      if (username === '') {
+        alert('Please enter a username!');
+        return;
+      }
 
       await API.graphql(graphqlOperation(mutations.createUserCalculation,{input: {
         username,
@@ -79,7 +85,6 @@ function App() {
 
       refreshList();
     } catch (error) {
-      console.log(error);
       if (error instanceof SyntaxError) {
         alert('Sorry, the equation you entered has a syntax error.');
       }
@@ -91,11 +96,8 @@ function App() {
     <div className={styles.formStyle}>
       <h1>Calculator</h1>
       <div className={styles.formStyle}>
-      <h2>Hello {username ? `,${username}!` : ''}</h2>
-      <TextField label="Enter Calculation Here!" onChange={onCalculationChange} value={calculation}>
-
-      </TextField>
-
+      <TextField label="Username" onChange={onUsernameChange} value={username}/>
+      <TextField label="Enter Calculation Here!" onChange={onCalculationChange} value={calculation}/>
       <Button onClick={calculate}>Submit Calculation</Button>
       </div>
       <h2> Calculation Feed</h2>
@@ -108,4 +110,4 @@ function App() {
   );
 }
 
-export default withAuthenticator(App);
+export default App;
