@@ -34,10 +34,9 @@ function App() {
   const [username, setUsername] = useState('');
   const refreshList = async () => {
     const result = await API.graphql(graphqlOperation(queries.listUserCalculations), {variables: 'limit 10'}) as any;
-    console.log(result);
     const finalList: Array<UserCalculations> = result.data.listUserCalculations.items;
     finalList.sort((a: UserCalculations, b: UserCalculations) => {
-      return new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime();
+      return new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime();
     });
     
     setAllCalculations(finalList.slice(0,10));
@@ -54,9 +53,6 @@ function App() {
     await updatedSubscriptions.subscribe({
       next: refreshList
     });
-
-    console.log(updatedSubs);
-
   }, [setUsername]);
 
 
@@ -67,16 +63,13 @@ function App() {
 
   function onCalculationChange(event: ChangeEvent<HTMLInputElement>) {
     const newCalculation = event.target.value;
-    console.log(newCalculation);
     setCalculation(newCalculation);
   }
 
   async function calculate() {
-    console.log(calculation);
     try {
       let result = eval(calculation);
       result = calculation + ` = ${result}`;
-      console.log(result);
 
       await API.graphql(graphqlOperation(mutations.createUserCalculation,{input: {
         username,
