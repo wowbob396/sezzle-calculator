@@ -81,7 +81,7 @@ function App() {
       await API.graphql(graphqlOperation(mutations.createUserCalculation,{input: {
         username,
         calculation: result,
-        timestamp: new Date().toDateString()
+        timestamp: new Date().toISOString()
       }}));
 
       refreshList();
